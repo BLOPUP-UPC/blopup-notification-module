@@ -1,58 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- Beans to add to the current Application context definition -->
-
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:jee="http://www.springframework.org/schema/jee"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-  		    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-  		    http://www.springframework.org/schema/context
-  		    http://www.springframework.org/schema/context/spring-context-3.0.xsd
-  		    http://www.springframework.org/schema/jee
-  		    http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
-  		    http://www.springframework.org/schema/tx
-  		    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-  		    http://www.springframework.org/schema/aop
-  		    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-  		    http://www.springframework.org/schema/util
-  		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-
-    <context:component-scan base-package="org.openmrs.module.blopup.notification" />
-
-    <!-- Wraps BlopupNotificationService methods in DB transactions and OpenMRS interceptors,
-    which set audit info like dateCreated, changedBy, etc.-->
-    <bean id="blopup.notification.BlopupNotificationService"
-            class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-        <property name="transactionManager">
-            <ref bean="transactionManager" />
-        </property>
-        <property name="target">
-            <bean class="org.openmrs.module.blopup.notification.api.impl.BlopupNotificationServiceImpl">
-                <property name="dao" ref="blopup.notification.BlopupNotificationDao" />
-            </bean>
-        </property>
-        <property name="preInterceptors">
-            <ref bean="serviceInterceptors" />
-        </property>
-        <property name="transactionAttributeSource">
-            <ref bean="transactionAttributeSource" />
-        </property>
-    </bean>
-
-    <!-- Adds BlopupNotificationService to OpenMRS context so it can be accessed
-    calling Context.getService(BlopupNotificationService.class) -->
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+    <!-- Database Access -->
     <bean parent="serviceContext">
         <property name="moduleService">
             <list>
-                <value>org.openmrs.module.blopup.notification.api.BlopupNotificationService</value>
-                <ref bean="blopup.notification.BlopupNotificationService" />
+                <value>@MODULE_PACKAGE@.MessageService</value>
+                <bean class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+                    <property name="transactionManager"><ref bean="transactionManager"/></property>
+                    <property name="target">
+                        <bean class="@MODULE_PACKAGE@.impl.MessageServiceImpl">
+                            <property name="messageDAO">
+                                <bean class="@MODULE_PACKAGE@.db.hibernate.HibernateMessageDAO">
+                                    <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+                                </bean>
+                            </property>
+                        </bean>
+                    </property>
+                    <property name="preInterceptors">
+                        <ref bean="serviceInterceptors" />
+                    </property>
+                    <property name="transactionAttributeSource">
+                        <bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource"/>
+                    </property>
+                </bean>
             </list>
         </property>
     </bean>
+
+    <bean parent="serviceContext">
+        <property name="moduleService">
+            <list>
+                <value>@MODULE_PACKAGE@.MessagingAddressService</value>
+                <bean class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+                    <property name="transactionManager"><ref bean="transactionManager"/></property>
+                    <property name="target">
+                        <bean class="@MODULE_PACKAGE@.impl.MessagingAddressServiceImpl">
+                            <property name="messagingAddressDAO">
+                                <bean class="@MODULE_PACKAGE@.db.hibernate.HibernateMessagingAddressDAO">
+                                    <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+                                </bean>
+                            </property>
+                        </bean>
+                    </property>
+                    <property name="preInterceptors">
+                        <ref bean="serviceInterceptors" />
+                    </property>
+                    <property name="transactionAttributeSource">
+                        <bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource"/>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!--  Gateway Manager -->
+    <bean id="gatewayManager" class="org.openmrs.module.blopup.notification.domain.gateway.GatewayManager"/>
+
+    <bean parent="serviceContext" >
+        <property name="moduleService">
+            <list>
+                <value>@MODULE_PACKAGE@.MessagingService</value>
+                <bean class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+                    <property name="transactionManager"><ref bean="transactionManager"/></property>
+                    <property name="target">
+                        <bean class="@MODULE_PACKAGE@.impl.MessagingServiceImpl">
+                            <property name="gatewayManager"><ref bean="gatewayManager"/></property>
+                        </bean>
+                    </property>
+                    <property name="preInterceptors">
+                        <ref bean="serviceInterceptors" />
+                    </property>
+                    <property name="transactionAttributeSource">
+                        <bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource"/>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean parent="serviceContext">
+        <property name="moduleService">
+            <list>
+                <value>@MODULE_PACKAGE@.EncryptionService</value>
+                <bean class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+                    <property name="transactionManager"><ref bean="transactionManager"/></property>
+                    <property name="target">
+                        <bean class="@MODULE_PACKAGE@.impl.EncryptionServiceImpl" />
+                    </property>
+                    <property name="preInterceptors">
+                        <ref bean="serviceInterceptors" />
+                    </property>
+                    <property name="transactionAttributeSource">
+                        <bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource"/>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
 </beans>

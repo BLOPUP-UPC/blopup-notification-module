@@ -1,0 +1,94 @@
+package org.openmrs.module.blopup.notification.domain.gateway;
+
+import org.openmrs.api.context.Context;
+import org.openmrs.module.blopup.notification.MessageService;
+import org.openmrs.module.blopup.notification.MessagingAddressService;
+import org.openmrs.module.blopup.notification.domain.Message;
+
+/**
+ * An abstract superclass that represents a service that can send and receive messages.
+ */
+public abstract class MessagingGateway {
+	
+	private MessagingAddressService addressService;
+	
+	private MessageService messageService;
+	
+	public abstract void sendMessage(Message message) throws Exception;
+	
+	public abstract void receiveMessages();
+	
+	/**
+	 * Should return true if the messaging service has the ability to send messages
+	 * 
+	 * @return
+	 */
+	public abstract boolean canSend();
+	
+	/**
+	 * Should return true if the messaging service has the ability to receive messages
+	 * 
+	 * @return
+	 */
+	public abstract boolean canReceive();
+	
+	/**
+	 * Returns true if the gateway is currently active
+	 * 
+	 * @return
+	 */
+	public abstract boolean isActive();
+	
+	/**
+	 * Should perform all necessary operations to start the Gateway so that isActive returns true
+	 */
+	public abstract void startup();
+	
+	/**
+	 * Should perform all necessary operations to stop the Gateway. isActive should return false
+	 */
+	public abstract void shutdown();
+	
+	/**
+	 * Should return the display name of this messaging gateway. This name will be used in UI and
+	 * should be internationalized
+	 * 
+	 * @return
+	 */
+	public abstract String getName();
+	
+	/**
+	 * Should return a short description of the messaging gateway
+	 * 
+	 * @return
+	 */
+	public abstract String getDescription();
+	
+	/**
+	 * Should return true if this gateway supports sending messages using the provided protocol.
+	 * With this method it is possible for gateways to support more than one protocol at once.
+	 * 
+	 * @param p
+	 * @return
+	 */
+	public abstract boolean supportsProtocol(Protocol p);
+	
+	/**
+	 * @return the addressService
+	 */
+	public MessagingAddressService getAddressService() {
+		if (addressService == null)
+			addressService = Context.getService(MessagingAddressService.class);
+		return addressService;
+	}
+	
+	/**
+	 * @return the messageService
+	 */
+	public MessageService getMessageService() {
+		if (messageService == null)
+			messageService = Context.getService(MessageService.class);
+		return messageService;
+	}
+	
+}

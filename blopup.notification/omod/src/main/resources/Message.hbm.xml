@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class table="messaging_messages" name="@MODULE_PACKAGE@.domain.Message">
+
+        <id name="messageId" type="int" column="message_id" unsaved-value="0">
+            <generator class="native"/>
+        </id>
+
+        <property name="uuid" type="string" length="38" not-null="true"/>
+
+        <property name="content" type="java.lang.String"/>
+        <property name="sendAttempts" type="int" length="3" column="send_attempts"/>
+        <property name="origin" type="java.lang.String"/>
+        <property name="destination" type="java.lang.String"/>
+        <property name="date" type="java.util.Date" length="19"/>
+        <property name="status" type="int" length="4"/>
+
+        <many-to-one name="sender" class="org.openmrs.Person">
+            <column name="sender"/>
+        </many-to-one>
+
+        <many-to-one name="recipient" class="org.openmrs.Person">
+            <column name="recipient"/>
+        </many-to-one>
+
+        <property name="protocolId" type="java.lang.String" column="protocol_id"/>
+    </class>
+</hibernate-mapping>

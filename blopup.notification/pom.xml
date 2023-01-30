@@ -12,7 +12,8 @@
 	<artifactId>blopup.notification</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
-	<name>Blopup Notification</name>
+	<name>Blopup Notification Module</name>
+
 	<description>Blopup Notification Module</description>
 
 	<url>https://wiki.openmrs.org/x/FQ4z</url>
@@ -65,7 +66,4 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<properties>
-		<openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
-	</properties>
 </project>
