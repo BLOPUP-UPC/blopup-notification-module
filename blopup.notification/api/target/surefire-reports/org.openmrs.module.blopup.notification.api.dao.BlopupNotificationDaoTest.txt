@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.openmrs.module.blopup.notification.api.dao.BlopupNotificationDaoTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 1.363 sec

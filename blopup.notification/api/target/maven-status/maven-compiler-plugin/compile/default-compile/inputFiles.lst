@@ -7,6 +7,7 @@
 /Users/olaoluajose/Documents/GitHub/blopup-notification-module/blopup.notification/api/src/main/java/org/openmrs/module/blopup/notification/domain/gateway/CredentialSet.java
 /Users/olaoluajose/Documents/GitHub/blopup-notification-module/blopup.notification/api/src/main/java/org/openmrs/module/blopup/notification/domain/gateway/exception/MessageFormattingException.java
 /Users/olaoluajose/Documents/GitHub/blopup-notification-module/blopup.notification/api/src/main/java/org/openmrs/module/blopup/notification/domain/gateway/exception/BadCredentialsException.java
+/Users/olaoluajose/Documents/GitHub/blopup-notification-module/blopup.notification/api/src/main/java/org/openmrs/module/blopup/notification/schedulertask/DispatchMessagesTask.java
 /Users/olaoluajose/Documents/GitHub/blopup-notification-module/blopup.notification/api/src/main/java/org/openmrs/module/blopup/notification/MessageService.java
 /Users/olaoluajose/Documents/GitHub/blopup-notification-module/blopup.notification/api/src/main/java/org/openmrs/module/blopup/notification/domain/gateway/GatewayManager.java
 /Users/olaoluajose/Documents/GitHub/blopup-notification-module/blopup.notification/api/src/main/java/org/openmrs/module/blopup/notification/email/EmailProtocol.java
