@@ -48,7 +48,7 @@ public class BlopupNotificationActivator extends BaseModuleActivator {
 	 */
 	private void createGatewayManagerTask() {
 		//temporarily add the privilege to manage the scheduler
-		Context.addProxyPrivilege(OpenmrsConstants.PRIV_MANAGE_SCHEDULER);
+		Context.addProxyPrivilege("Manage Scheduler");
 		TaskDefinition dispatchMessagesTaskDef = Context.getSchedulerService().getTaskByName(TASK_NAME);
 		
 		if (dispatchMessagesTaskDef == null) {

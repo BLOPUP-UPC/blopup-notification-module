@@ -47,8 +47,8 @@ public class DispatchMessagesTask extends AbstractTask {
 		
 		try {
 			// authenticate (for pre-1.7)
-			if (!Context.isAuthenticated())
-				authenticate();
+			//            if (!Context.isAuthenticated())
+			//                Context.authenticate(null, null);
 			
 			GatewayManager manager = Context.getService(MessagingService.class).getGatewayManager();
 			if (manager == null)

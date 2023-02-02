@@ -9,7 +9,7 @@ import org.openmrs.test.Verifies;
 import org.openmrs.util.OpenmrsUtil;
 import org.springframework.util.StringUtils;
 
-public class EncryptionServiceTest extends BaseModuleContextSensitiveTest {
+public class EncryptionServiceTest extends BaseModuleContextSensitiveTest{
 	
 	/**
 	 * @see {@link EncryptionService#decrypt(String)}

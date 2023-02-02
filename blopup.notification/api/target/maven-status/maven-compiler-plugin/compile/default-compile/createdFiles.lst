@@ -15,7 +15,6 @@ org/openmrs/module/blopup/notification/domain/gateway/exception/AddressFormattin
 org/openmrs/module/blopup/notification/domain/Message.class
 org/openmrs/module/blopup/notification/domain/gateway/exception/MessageFormattingException.class
 org/openmrs/module/blopup/notification/api/BlopupNotificationService.class
-org/openmrs/module/blopup/notification/api/dao/hibernate/HibernateMessagingAddressDAO.class
 org/openmrs/module/blopup/notification/domain/MessageStatus.class
 org/openmrs/module/blopup/notification/db/MessagingAddressDAO.class
 org/openmrs/module/blopup/notification/email/EmailGateway.class
@@ -28,7 +27,6 @@ org/openmrs/module/blopup/notification/db/MessageDAO.class
 org/openmrs/module/blopup/notification/email/EmailProtocol.class
 org/openmrs/module/blopup/notification/EncryptionService.class
 org/openmrs/module/blopup/notification/domain/gateway/CredentialSet.class
-org/openmrs/module/blopup/notification/api/dao/hibernate/HibernateMessageDAO.class
 org/openmrs/module/blopup/notification/domain/MessagingAddress.class
 org/openmrs/module/blopup/notification/domain/Modem.class
 org/openmrs/module/blopup/notification/Item.class

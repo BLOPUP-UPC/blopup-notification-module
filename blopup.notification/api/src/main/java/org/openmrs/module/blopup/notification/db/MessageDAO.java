@@ -4,7 +4,6 @@ import org.openmrs.Person;
 import org.openmrs.api.APIException;
 import org.openmrs.module.blopup.notification.MessageService;
 import org.openmrs.module.blopup.notification.domain.Message;
-import org.openmrs.module.blopup.notification.domain.gateway.MessagingGateway;
 import org.openmrs.module.blopup.notification.domain.gateway.Protocol;
 
 import java.util.List;
@@ -25,13 +24,11 @@ public interface MessageDAO {
 	public Message getMessage(Integer messageId);
 	
 	/**
-	 * @see MessageService#findMessagesWithAdresses(MessageService, String, String, String, Integer)
 	 */
 	public List<Message> findMessagesWithAddresses(Protocol protocol, String toAddress, String fromAddress, String content,
 	        Integer status);
 	
 	/**
-	 * @see MessageService#findMessages(MessagingGateway, Person, Person, String, Integer)
 	 */
 	public List<Message> findMessagesWithPeople(Protocol protocol, Person sender, Person recipient, String content,
 	        Integer status);

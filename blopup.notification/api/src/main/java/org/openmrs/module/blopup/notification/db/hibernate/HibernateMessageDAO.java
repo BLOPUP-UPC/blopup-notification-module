@@ -3,7 +3,8 @@ package org.openmrs.module.blopup.notification.db.hibernate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
-import org.hibernate.SessionFactory;
+import org.openmrs.api.db.hibernate.DbSession;
+import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.Person;
@@ -13,6 +14,7 @@ import org.openmrs.module.blopup.notification.db.MessageDAO;
 import org.openmrs.module.blopup.notification.domain.Message;
 import org.openmrs.module.blopup.notification.domain.MessageStatus;
 import org.openmrs.module.blopup.notification.domain.gateway.Protocol;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -23,15 +25,11 @@ public class HibernateMessageDAO implements MessageDAO {
 	/**
 	 * Hibernate session factory
 	 */
-	private SessionFactory sessionFactory;
+	@Autowired
+	DbSessionFactory sessionFactory;
 	
-	/**
-	 * Set session factory
-	 * 
-	 * @param sessionFactory
-	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	private DbSession getSession() {
+		return sessionFactory.getCurrentSession();
 	}
 	
 	public List<Message> getAllMessages() {

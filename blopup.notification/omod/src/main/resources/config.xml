@@ -206,12 +206,12 @@
 
     <extension>
         <point>org.openmrs.admin.list</point>
-        <class>@MODULE_PACKAGE@.extension.html.AdminList</class>
+        <class>org.openmrs.module.blopup.notification.html.AdminList</class>
     </extension>
 
     <extension>
         <point>org.openmrs.patientDashboardTab</point>
-        <class>@MODULE_PACKAGE@.extension.html.MessagingPatientDashboardTabExt</class>
+        <class>org.openmrs.module.blopup.notification.html.MessagingPatientDashboardTabExt</class>
     </extension>
 
     <!-- Privileges -->
