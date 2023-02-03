@@ -1,0 +1,3 @@
+org/openmrs/module/blopup/notification/api/impl/EmailProcessor.class
+org/openmrs/module/blopup/notification/api/impl/EmailProcessor$1.class
+org/openmrs/module/blopup/notification/api/models/EmailRequest.class

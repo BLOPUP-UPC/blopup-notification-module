@@ -23,27 +23,29 @@
   		    http://www.springframework.org/schema/util
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-    <context:component-scan base-package="org.openmrs.module.blopup.notification" />
+    <context:component-scan base-package="org.openmrs.module.blopup.notification"/>
 
     <!-- Wraps BlopupNotificationService methods in DB transactions and OpenMRS interceptors,
     which set audit info like dateCreated, changedBy, etc.-->
     <bean id="blopup.notification.BlopupNotificationService"
-            class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
         <property name="transactionManager">
-            <ref bean="transactionManager" />
+            <ref bean="transactionManager"/>
         </property>
         <property name="target">
             <bean class="org.openmrs.module.blopup.notification.api.impl.BlopupNotificationServiceImpl">
-                <property name="dao" ref="blopup.notification.BlopupNotificationDao" />
+                <property name="dao" ref="blopup.notification.BlopupNotificationDao"/>
             </bean>
         </property>
         <property name="preInterceptors">
-            <ref bean="serviceInterceptors" />
+            <ref bean="serviceInterceptors"/>
         </property>
         <property name="transactionAttributeSource">
-            <ref bean="transactionAttributeSource" />
+            <ref bean="transactionAttributeSource"/>
         </property>
     </bean>
+    <!-- Adds EmailProcessor to OpenMRS so it can be autowired -->
+    <bean id="emailProcessor" class="org.openmrs.module.blopup.notification.api.impl.EmailProcessor"/>
 
     <!-- Adds BlopupNotificationService to OpenMRS context so it can be accessed
     calling Context.getService(BlopupNotificationService.class) -->
@@ -51,7 +53,7 @@
         <property name="moduleService">
             <list>
                 <value>org.openmrs.module.blopup.notification.api.BlopupNotificationService</value>
-                <ref bean="blopup.notification.BlopupNotificationService" />
+                <ref bean="blopup.notification.BlopupNotificationService"/>
             </list>
         </property>
     </bean>

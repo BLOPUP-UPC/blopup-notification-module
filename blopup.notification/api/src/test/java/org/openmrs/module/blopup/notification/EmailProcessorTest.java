@@ -18,6 +18,8 @@ import org.openmrs.User;
 import org.openmrs.api.UserService;
 import org.openmrs.module.blopup.notification.api.dao.BlopupNotificationDao;
 import org.openmrs.module.blopup.notification.api.impl.BlopupNotificationServiceImpl;
+import org.openmrs.module.blopup.notification.api.impl.EmailProcessor;
+import org.openmrs.module.blopup.notification.api.models.EmailRequest;
 
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
@@ -28,10 +30,10 @@ import static org.mockito.Mockito.when;
  * This is a unit test, which verifies logic in BlopupNotificationService. It doesn't extend
  * BaseModuleContextSensitiveTest, thus it is run without the in-memory DB and Spring context.
  */
-public class BlopupNotificationServiceTest {
+public class EmailProcessorTest {
 	
 	@InjectMocks
-	BlopupNotificationServiceImpl basicModuleService;
+	EmailProcessor emailProcessor;
 	
 	@Mock
 	BlopupNotificationDao dao;
@@ -45,20 +47,20 @@ public class BlopupNotificationServiceTest {
 	}
 	
 	@Test
-	public void saveItem_shouldSetOwnerIfNotSet() {
+	public void sendEmail_shouldSendEmailIfConfigurationIsPresent() {
 		//Given
 		Item item = new Item();
 		item.setDescription("some description");
 		
 		when(dao.saveItem(item)).thenReturn(item);
 		
-		User user = new User();
-		when(userService.getUser(1)).thenReturn(user);
+		EmailRequest emailRequest = new EmailRequest();
+		//when(emailProcessor.sendEmail(emailRequest)).thenReturn(null);
 		
 		//When
-		basicModuleService.saveItem(item);
+		emailProcessor.sendEmail(emailRequest);
 		
 		//Then
-		assertThat(item, hasProperty("owner", is(user)));
+		assertThat(item, hasProperty("owner", is(emailRequest)));
 	}
 }
