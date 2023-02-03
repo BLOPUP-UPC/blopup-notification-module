@@ -9,13 +9,16 @@
  */
 package org.openmrs.module.blopup.notification;
 
-import java.util.Map;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openmrs.module.Extension;
 import org.openmrs.module.blopup.notification.extension.html.AdminList;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+
+import java.util.Map;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
 
 /**
  * This test validates the AdminList extension class
@@ -26,7 +29,7 @@ public class AdminListExtensionTest {
 	 * Get the links for the extension class
 	 */
 	@Test
-	public void testValidatesLinks() {
+	void testValidatesLinks() {
 		AdminList ext = new AdminList();
 		
 		Map<String, String> links = ext.getLinks();
@@ -39,7 +42,7 @@ public class AdminListExtensionTest {
 	 * Check the media type of this extension class
 	 */
 	@Test
-	public void testMediaTypeIsHtml() {
+	void testMediaTypeIsHtml() {
 		AdminList ext = new AdminList();
 		
 		assertThat(ext.getMediaType(), is(Extension.MEDIA_TYPE.html));

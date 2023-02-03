@@ -9,21 +9,16 @@
  */
 package org.openmrs.module.blopup.notification;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.openmrs.User;
 import org.openmrs.api.UserService;
 import org.openmrs.module.blopup.notification.api.dao.BlopupNotificationDao;
-import org.openmrs.module.blopup.notification.api.impl.BlopupNotificationServiceImpl;
 import org.openmrs.module.blopup.notification.api.impl.EmailProcessor;
 import org.openmrs.module.blopup.notification.api.models.EmailRequest;
 
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 /**
@@ -41,7 +36,7 @@ public class EmailProcessorTest {
 	@Mock
 	UserService userService;
 	
-	@Before
+	@BeforeEach
 	public void setupMocks() {
 		MockitoAnnotations.initMocks(this);
 	}
