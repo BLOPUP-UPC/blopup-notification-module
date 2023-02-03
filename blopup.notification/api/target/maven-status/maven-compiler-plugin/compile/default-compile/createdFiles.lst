@@ -1,3 +1,9 @@
 org/openmrs/module/blopup/notification/api/impl/EmailProcessor.class
+org/openmrs/module/blopup/notification/api/impl/BlopupNotificationServiceImpl.class
 org/openmrs/module/blopup/notification/api/impl/EmailProcessor$1.class
+org/openmrs/module/blopup/notification/BlopupNotificationConfig.class
+org/openmrs/module/blopup/notification/api/dao/BlopupNotificationDao.class
+org/openmrs/module/blopup/notification/Item.class
+org/openmrs/module/blopup/notification/BlopupNotificationActivator.class
+org/openmrs/module/blopup/notification/api/BlopupNotificationService.class
 org/openmrs/module/blopup/notification/api/models/EmailRequest.class

@@ -1,1 +1,3 @@
 org/openmrs/module/blopup/notification/BlopupNotificationServiceTest.class
+org/openmrs/module/blopup/notification/api/dao/BlopupNotificationDaoTest.class
+org/openmrs/module/blopup/notification/EmailProcessorTest.class

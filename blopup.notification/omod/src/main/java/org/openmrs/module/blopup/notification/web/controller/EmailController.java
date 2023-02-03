@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.mail.Session;
+
 //ws/rest/v1/email -> GET, POST, PATCH, DELETE
 @Controller
 @RequestMapping(value = "/rest/" + RestConstants.VERSION_1 + "/email")
