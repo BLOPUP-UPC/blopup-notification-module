@@ -67,6 +67,7 @@
 
 	<properties>
 		<openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
-		<openMRSVersion.Rest>2.19.0</openMRSVersion.Rest>
+<!--		consider upgrading to <openmrsPlatformVersion>2.0.4</openmrsPlatformVersion>-->
+		<openMRSVersion.Rest>2.4</openMRSVersion.Rest>
 	</properties>
 </project>

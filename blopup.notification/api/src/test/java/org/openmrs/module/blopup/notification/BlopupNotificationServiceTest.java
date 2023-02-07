@@ -9,8 +9,8 @@
  */
 package org.openmrs.module.blopup.notification;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -21,7 +21,7 @@ import org.openmrs.module.blopup.notification.api.impl.BlopupNotificationService
 
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.when;
 
 /**
@@ -39,13 +39,13 @@ public class BlopupNotificationServiceTest {
 	@Mock
 	UserService userService;
 	
-	@Before
+	@BeforeEach
 	public void setupMocks() {
 		MockitoAnnotations.initMocks(this);
 	}
 	
 	@Test
-	public void saveItem_shouldSetOwnerIfNotSet() {
+	void saveItem_shouldSetOwnerIfNotSet() {
 		//Given
 		Item item = new Item();
 		item.setDescription("some description");

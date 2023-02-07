@@ -11,4 +11,12 @@
 	<packaging>jar</packaging>
 	<name>Blopup Notification API</name>
 	<description>API project for Blopup Notification</description>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
